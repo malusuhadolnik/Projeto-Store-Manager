@@ -1,21 +1,19 @@
 const { productsModel } = require('../models');
 
-const PAGE_NOT_FOUND = 404;
-const HTTP_OK = 200;
-const MSG_UNV = "Sorry, this page is currently unavailable";
+const MSG_UNV = 'Sorry, this page is currently unavailable';
 
 const getAllProducts = async () => {
   const allProducts = await productsModel.showAllProducts();
-  if (!allProducts.length) return { type: PAGE_NOT_FOUND, message: MSG_UNV };
+  if (!allProducts.length) return { type: 404, message: MSG_UNV };
 
-  return { type: HTTP_OK, message: allProducts };
+  return { type: 200, message: allProducts };
 };
 
-const getSearchedItem = async () => {
-  const queryItem = await productsModel.getProductById();
-  if (!queryItem.length) return { type: PAGE_NOT_FOUND, message: "Product not found" };
+const getSearchedItem = async (id) => {
+  const queryItem = await productsModel.getProductById(id);
+  if (!queryItem.length) return { type: 404, message: 'Product not found' };
 
-  return { type: HTTP_OK, message: queryItem };
+  return { type: 200, message: queryItem };
 };
 
 module.exports = {
