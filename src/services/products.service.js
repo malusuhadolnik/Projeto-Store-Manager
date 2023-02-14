@@ -10,15 +10,13 @@ const getAllProducts = async () => {
 const getSearchedItem = async (id) => {
   const error = validation.validateId(id);
   if (error.type) return error;
-  console.log(`service id ${id}`);
 
   const queryItem = await productsModel.getProductById(id);
-  console.log(`queryItem ${queryItem}`);
 
-  if (queryItem === undefined) {
-    return { type: 404, message: 'Product not found' };
+  if (queryItem) {
+    return { type: null, message: queryItem };
   }
-  return { type: 200, message: queryItem };
+  return { type: 404, message: 'Product not found' };
 };
 
 const insertItem = async (name) => {
