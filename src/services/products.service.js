@@ -16,7 +16,7 @@ const getSearchedItem = async (id) => {
 
   const queryItem = await productsModel.getProductById(id);
 
-  if (!queryItem) {
+  if (queryItem === null) {
     return { type: 404, message: 'Product not found' };
   }
   return { type: 200, message: queryItem[0] };
