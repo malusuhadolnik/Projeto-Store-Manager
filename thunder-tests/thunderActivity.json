@@ -22,12 +22,12 @@
     "method": "POST",
     "sortNum": 0,
     "created": "2023-02-14T14:11:03.808Z",
-    "modified": "2023-02-14T14:11:03.808Z",
+    "modified": "2023-02-14T17:48:25.772Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"name\": \"ProdutoX\"\n}",
+      "raw": "{\n  \"name\": \"la\"\n}",
       "form": []
     },
     "tests": []

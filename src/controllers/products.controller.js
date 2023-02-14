@@ -17,7 +17,7 @@ const insertNewItem = async (req, res) => {
   const { name } = req.body;
   const { type, message } = await productsService.insertItem(name);
 
-  if (type) return res.status(type).json(message);
+  if (type) return res.status(type).json({ message });
   res.status(201).json(message);
 };
 
