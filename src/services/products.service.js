@@ -1,11 +1,8 @@
 const { productsModel } = require('../models');
 const validation = require('./validations/validateId');
 
-const MSG_UNV = 'Sorry, this page is currently unavailable';
-
 const getAllProducts = async () => {
   const allProducts = await productsModel.showAllProducts();
-
 
   return { type: null, message: allProducts };
 };
