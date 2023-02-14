@@ -1,19 +1,25 @@
 const { productsModel } = require('../models');
+const validation = require('./validations/validateId');
 
 const MSG_UNV = 'Sorry, this page is currently unavailable';
 
 const getAllProducts = async () => {
   const allProducts = await productsModel.showAllProducts();
-  // if (!allProducts.length) return { type: 404, message: MSG_UNV };
+
 
   return { type: null, message: allProducts };
 };
 
 const getSearchedItem = async (id) => {
-  const queryItem = await productsModel.getProductById(id);
-  if (!queryItem.length) return { type: 404, message: 'Product not found' };
+  const error = validation.validateId(id);
+  if (error.type) return error;
 
-  return { type: 200, message: queryItem };
+  const queryItem = await productsModel.getProductById(id);
+
+  if (!queryItem) {
+    return { type: 404, message: 'Product not found' };
+  }
+  return { type: 200, message: queryItem[0] };
 };
 
 module.exports = {
