@@ -23,9 +23,7 @@ const getSearchedItem = async (id) => {
 
 const insertItem = async (name) => {
   const newProduct = await productsModel.insertNewProducts(name);
-  console.log(`newproduct: ${newProduct}`);
   const getTheNewProduct = await productsModel.getProductByName(name);
-  console.log(`getThenewproduct: ${getTheNewProduct}`);
 
   if (newProduct) {
     return { type: 201, message: getTheNewProduct };
