@@ -23,7 +23,7 @@ const getSearchedItem = async (id) => {
 const insertItem = async (name) => {
   const error = validateName(name);
   if (error.type) return error;
-  console.log(typeof { error });
+  // console.log(typeof  error );
 
   const newProduct = await productsModel.insertNewProducts(name);
   const getTheNewProduct = await productsModel.getProductByName(name);
