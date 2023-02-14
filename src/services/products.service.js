@@ -13,10 +13,10 @@ const getSearchedItem = async (id) => {
 
   const queryItem = await productsModel.getProductById(id);
 
-  if (queryItem === null) {
+  if (!queryItem) {
     return { type: 404, message: 'Product not found' };
   }
-  return { type: 200, message: queryItem[0] };
+  return { type: 200, message: queryItem };
 };
 
 module.exports = {
