@@ -2,14 +2,15 @@ const { salesService } = require('../services');
 
 const insertSale = async (req, res) => {
   const arrayNewSales = req.body;
-  // console.log(`arrayNewSales: ${arrayNewSales}`);
+  console.log(`arrayNewSales: ${arrayNewSales}`);
 
-  const { type, message } = await salesService.insertNewSale(arrayNewSales);
-  // console.log(`type in controller: ${type}`);
-  // console.log(`message in controller ${message}`);
+  const theSale = await salesService.registerSoldProducts(arrayNewSales);
+  console.log(`const theSale ${theSale}`);
 
-  if (type) return res.status(type).json({ message });
-  res.status(201).json(message);
+  if (!theSale) {
+    return { type: 404, message: 'Page not found' };
+  }
+  res.status(201).json(theSale);
 };
 
 module.exports = {

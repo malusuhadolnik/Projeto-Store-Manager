@@ -9,17 +9,15 @@ const registerASale = async (date) => {
 };
 
 // a sale_id é uma chave estrangeira, correspondente à chave primária da tabela sales
-const saveSoldProducts = async (salesObject, insertId) => { 
-  const columns = Object.keys(salesObject).join(', ');
-  const placeholders = Object.keys(salesObject).map((_key) => '?').join(', ');
-
-  const updateSale = await connection.execute(
-    `INSERT INTO StoreManager.sales_products (sale_id, ${columns}) VALUE (${placeholders}, ?)`,
-    [insertId, ...Object.values(salesObject)],
+const saveSoldProducts = async (sale, insertId) => { 
+await connection.execute(
+    'INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) VALUE (?, ?, ?)',
+    [insertId, sale.productId, sale.quantity],
   );
-  
-  return updateSale; 
 };
+
+// Usando Object.keys para definir as colunas, obtive o seguinte erro: 'Unknown column 'productId' in 'field list''
+// Por isso optei por passar o nome das colunas manualmente, para evitar erro
 
 module.exports = {
   registerASale,

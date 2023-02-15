@@ -1,9 +1,10 @@
-// const express = require('express');
+const express = require('express');
 
-// const { salesController } = require('../controllers');
+const { salesController } = require('../controllers');
+const { validateQuantity } = require('../middlewares/validateSaleInfo');
 
-// const salesRouter = express.Router();
+const salesRouter = express.Router();
 
-// salesRouter.post('/', salesController.insertNewSale);
+salesRouter.post('/', validateQuantity, salesController.insertSale);
 
-// module.exports = salesRouter;
+module.exports = salesRouter;
