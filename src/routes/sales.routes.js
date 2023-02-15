@@ -1,9 +1,9 @@
-const express = require('express');
+// const express = require('express');
 
-const { salesController } = require('../controllers');
+// const { salesController } = require('../controllers');
 
-const salesRouter = express.Router();
+// const salesRouter = express.Router();
 
-salesRouter.post('/', salesController.insertNewSale);
+// salesRouter.post('/', salesController.insertNewSale);
 
-module.exports = salesRouter;
+// module.exports = salesRouter;
