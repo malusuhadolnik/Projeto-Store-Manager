@@ -30,12 +30,6 @@ const hasProductId = (req, res, next) => {
 const validateProdId = async (req, res, next) => {
   const sales = req.body; 
   
-  if (sales.lenght === 1) {
-    const { productId } = sales;
-    const isIdValid = await productsModel.getProductById(productId);
-    return isIdValid;
-  }
-
   const getProducts = await Promise.all(sales.map(async ({ productId }) => {
   const product = await productsModel.getProductById(productId);
   return product;
