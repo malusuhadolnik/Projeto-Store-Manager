@@ -1,5 +1,4 @@
 const { salesModel } = require('../models');
-// const { validateSaleInfo } = require('./validations/validateSaleInfo');
 
 const registerSoldProducts = async (sales) => {
   console.log(`const id ${sales}`);
