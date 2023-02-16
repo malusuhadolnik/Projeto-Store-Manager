@@ -15,6 +15,15 @@ describe('Testes de unidade do model de produtos', function () {
     expect(result).to.be.deep.equal(mockTableProducts);
   });
 
+  it('Testa se, inserida uma id, a função retorna o produto correspondente', async function () {
+    // Arrange: configura o que é necessário para a execução do teste: mock!
+    sinon.stub(connection, 'execute').resolves([[mockTableProducts[0]]]);
+    // Act: executa o teste
+    const result = await productsModel.getProductById(1)
+    // Assert:verifica o resultado do teste
+    expect(result).to.be.deep.equal(mockTableProducts[0]);
+  });
+
   afterEach(function () {
     sinon.restore();
   });
