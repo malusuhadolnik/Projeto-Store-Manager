@@ -1,11 +1,8 @@
 const { salesModel } = require('../models');
 
 const registerSoldProducts = async (sales) => {
-  console.log(`const id ${sales}`);
-  
   const date = new Date(); // https://www.freecodecamp.org/news/javascript-get-current-date-todays-date-in-js/
   const id = await salesModel.registerASale(date);
-  console.log(`const id ${id}`);
   
   // para inserir todos os objetos da array, precisamos fazer um map!
   // cada operação assíncrona é uma promise. queremos o nosso resultado apenas quando todas as promessas fore cumpridas
@@ -26,25 +23,12 @@ const getAllSales = async () => {
 
 const getSaleById = async (id) => {
   const querySale = await salesModel.listSaleById(id);
-  console.log(`querysale: ${querySale}`);
   
   if (querySale.length >= 1) {
     return { type: null, message: querySale };
   }
   return { type: 404, message: 'Sale not found' };
 };
-
-// const getSearchedItem = async (id) => {
-//   const error = validation.validateId(id);
-//   if (error.type) return error;
-
-//   const queryItem = await productsModel.getProductById(id);
-
-//   if (queryItem) {
-//     return { type: null, message: queryItem };
-//   }
-//   return { type: 404, message: 'Product not found' };
-// };
 
 module.exports = {
   registerSoldProducts,
