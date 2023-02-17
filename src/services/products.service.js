@@ -37,7 +37,7 @@ const insertItem = async (name) => {
 const updateProductNameById = async (name, id) => {
   const error = validateName(name);
   if (error.type) return error;
-  
+
   const hasProduct = await productsModel.getProductById(id);
 
   if (hasProduct === undefined) return { type: 404, message: 'Product not found' };
@@ -46,9 +46,19 @@ const updateProductNameById = async (name, id) => {
   return { type: null, message: { id, name } };
 };
 
+const deleteProductById = async (id) => {
+  const hasProduct = await productsModel.getProductById(id);
+
+  if (hasProduct === undefined) return { type: 404, message: 'Product not found' };
+
+  await productsModel.deleteProduct(id);
+  return { type: 204, message: '' };
+};
+
 module.exports = {
   getAllProducts,
   getSearchedItem,
   insertItem,
   updateProductNameById,
+  deleteProductById,
 };
