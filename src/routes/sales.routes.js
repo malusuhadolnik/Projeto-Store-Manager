@@ -6,5 +6,7 @@ const { validateQuant, hasProductId, validateProdId } = require('../middlewares/
 const salesRouter = express.Router();
 
 salesRouter.post('/', validateQuant, hasProductId, validateProdId, salesController.insertSale);
+salesRouter.get('/', salesController.listSales);
+salesRouter.get('/:id', salesController.listSearchedSale);
 
 module.exports = salesRouter;

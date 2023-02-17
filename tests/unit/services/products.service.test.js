@@ -50,37 +50,4 @@ describe('Testes de unidade do service de produtos', function () {
   });
 });
 
-// 
-// const getSearchedItem = async (id) => {
-//   const error = validation.validateId(id);
-//   if (error.type) return error;
 
-//   const queryItem = await productsModel.getProductById(id);
-
-//   if (queryItem) {
-//     return { type: null, message: queryItem };
-//   }
-//   return { type: 404, message: 'Product not found' };
-// };
-
-// const getProductById = async (id) => {
-//   const [[result]] = await connection.execute(
-//     'SELECT * FROM StoreManager.products WHERE id = ?',
-//     [id],
-//   );
-//   return result;
-// };
-
-// const insertNewItem = async (req, res) => {
-//   const { name } = req.body;
-//   const { type, message } = await productsService.insertItem(name);
-//   console.log(typeof message);
-
-//   let theMessage = message;
-//   if (typeof message === 'string') {
-//     theMessage = { message };
-//   }
-
-//   if (type) return res.status(type).json(theMessage);
-//   res.status(201).json(message);
-// };

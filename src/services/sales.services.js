@@ -15,11 +15,39 @@ const registerSoldProducts = async (sales) => {
     return sale;
   }));
   
-  console.log(`const itemSold ${itemsSold}`); 
   return { id, itemsSold };
   // neste retorno não estou colocando a estrutura type, message por causa do formato que a resposta precisa ter.
 };
 
+const getAllSales = async () => {
+  const allSales = await salesModel.listAllSales();
+  return { type: null, message: allSales };
+};
+
+const getSaleById = async (id) => {
+  const querySale = await salesModel.listSaleById(id);
+  console.log(`querysale: ${querySale}`);
+  
+  if (querySale.length >= 1) {
+    return { type: null, message: querySale };
+  }
+  return { type: 404, message: 'Sale not found' };
+};
+
+// const getSearchedItem = async (id) => {
+//   const error = validation.validateId(id);
+//   if (error.type) return error;
+
+//   const queryItem = await productsModel.getProductById(id);
+
+//   if (queryItem) {
+//     return { type: null, message: queryItem };
+//   }
+//   return { type: 404, message: 'Product not found' };
+// };
+
 module.exports = {
   registerSoldProducts,
+  getAllSales,
+  getSaleById,
 };
